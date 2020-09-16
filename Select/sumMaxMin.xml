@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- test resouce :  https://programmers.co.kr/learn/courses/30/lessons/59034 -->
+<mapper namespace="sumMaxMin">
+    <select id="select1" resultType="Blog">
+        -- 코드를 입력하세요
+        SELECT
+              ANIMAL_ID
+            , ANIMAL_TYPE
+            , DATETIME
+            , INTAKE_CONDITION
+            , NAME
+            , FOX_UPON_INTAKE
+        FROM ANIMAL_INS
+        ORDER BY ANIMAL_ID;
+    </select>
+    <select id="smm1">
+        SELECT
+             MAX(DATETIME)
+        FROM ANIMAL_INS
+    </select>
+    <select id="smm2">
+        SELECT
+             MIN(DATETIME)
+        FROM ANIMAL_INS
+    </select>
+    <select id="smm3">
+        SELECT
+             COUNT(*)
+        FROM ANIMAL_INS
+    </select>
+    <select>
+        SELECT
+                COUNT(a.NAME)
+        FROM (
+                SELECT
+                      NAME
+                FROM ANIMAL_INS
+                WHERE NAME IS NOT NULL
+                GROUP BY NAME
+                 ) a
+    </select>
+</mapper>
+
+
+
+
