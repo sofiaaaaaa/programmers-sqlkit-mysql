@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- test resouce :  https://programmers.co.kr/learn/courses/30/parts/17044 -->
+<mapper namespace="sumMaxMin">
+    <select id="group1" resultType="Blog">
+        SELECT
+              ANIMAL_TYPE
+            , COUNT(*)
+        FROM ANIMAL_INS
+        GROUP BY ANIMAL_TYPE
+        ORDER BY ANIMAL_TYPE;
+    </select>
+   <select id="group2" >
+       SELECT
+              NAME
+            , COUNT(*)
+       FROM ANIMAL_INS
+       GROUP BY NAME
+       HAVING COUNT(NAME) >= 2
+       ORDER BY NAME;
+   </select>
+    <select id="group3" >
+    <![CDATA[
+    SELECT
+        TIME_FORMAT(DATETIME, "%H") HOUR
+        , COUNT(*) COUNT
+    FROM ANIMAL_OUTS
+    WHERE TIME_FORMAT(DATETIME, "%H") >= '09'
+    AND TIME_FORMAT(DATETIME, "%H") <= '19'
+    GROUP BY TIME_FORMAT(DATETIME, "%H")
+    ORDER BY TIME_FORMAT(DATETIME, "%H");
+    ]]>
+    </select>
+</mapper>
+
+
+
+
